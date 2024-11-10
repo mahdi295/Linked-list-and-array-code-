@@ -1,0 +1,248 @@
+Array and algorithm
+1. Create and Display an Array of Elements
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Elements of the array are: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+2. Find the Largest Number in an Array
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    int largest = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
+    }
+    cout << "The largest number is: " << largest << endl;
+    return 0;
+}
+3. Calculate the Roots of a Quadratic Equation
+cpp
+Copy code
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double a, b, c;
+    cout << "Enter coefficients a, b, and c: ";
+    cin >> a >> b >> c;
+    double discriminant = b * b - 4 * a * c;
+    if (discriminant > 0) {
+        double root1 = (-b + sqrt(discriminant)) / (2 * a);
+        double root2 = (-b - sqrt(discriminant)) / (2 * a);
+        cout << "Roots are real and different." << endl;
+        cout << "Root 1 = " << root1 << endl;
+        cout << "Root 2 = " << root2 << endl;
+    } else if (discriminant == 0) {
+        double root = -b / (2 * a);
+        cout << "Roots are real and the same." << endl;
+        cout << "Root = " << root << endl;
+    } else {
+        cout << "Roots are complex and different." << endl;
+        double realPart = -b / (2 * a);
+        double imagPart = sqrt(-discriminant) / (2 * a);
+        cout << "Root 1 = " << realPart << " + " << imagPart << "i" << endl;
+        cout << "Root 2 = " << realPart << " - " << imagPart << "i" << endl;
+    }
+    return 0;
+}
+4. Separate Odd and Even Elements in an Array
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Odd elements: ";
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 != 0) {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << "\nEven elements: ";
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0) {
+            cout << arr[i] << " ";
+        }
+    }
+    return 0;
+}
+5. Insert an Element into an Array
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n, pos, elem;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n+1];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Enter position to insert element (1-based index): ";
+    cin >> pos;
+    cout << "Enter element to insert: ";
+    cin >> elem;
+for (int i = n; i >= pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos - 1] = elem;
+    n++;
+    cout << "Array after insertion: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+6. Delete an Element from an Array
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n, pos;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Enter position to delete element (1-based index): ";
+    cin >> pos;
+    for (int i = pos - 1; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+    cout << "Array after deletion: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+7. Bubble Sort Algorithm
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+8. Linear Search Algorithm
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Enter element to search: ";
+    cin >> key;
+    bool found = false;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            cout << "Element found at position: " << i + 1 << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Element not found." << endl;
+    }
+    return 0;
+}
+9. Binary Search Algorithm (Assuming Sorted Array)
+cpp
+Copy code
+#include <iostream>
+using namespace std;
+int main() {
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of the sorted array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout << "Enter element to search: ";
+    cin >> key;
+    int low = 0, high = n - 1;
+    bool found = false;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == key) {
+            cout << "Element found at position: " << mid + 1 << endl;
+            found = true;
+            break;
+        } else if (arr[mid] < key) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    if (!found) {
+        cout << "Element not found." << endl;
+    }
+    return 0;
+}
