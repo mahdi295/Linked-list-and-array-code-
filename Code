@@ -1,0 +1,416 @@
+Linked List(complex)
+32. Write a program to create a Linked List of n elements and then 
+display the list. 
+33. Write a program to create a Linked List of n elements and then 
+search an element from the list.  
+34. Write a program to create a Linked List of n elements and then 
+insert an element to the list. 
+35. Write a program to create a Linked List of n elements and then 
+delete an element from the list.  
+38. Write a program to search an ITEM from the Linked list. 
+39. Write a program to print the even integer from a linked list. 
+40. Write a program to sum up the value of a linked list. 
+41. Write a program to count the number of elements in a linked list. 
+ANSWER:
+32. Create a Linked List of n elements and display the list
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+// Function to insert at end
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+// Function to display the list
+void display() {
+    node* t = head;
+    while (t != nullptr) {
+        cout << t->data << " ";
+        t = t->link;
+    }
+    cout << endl;
+}
+int main() {
+    int n, val;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "The linked list is: ";
+    display();
+    return 0;
+}
+33. Create a Linked List of n elements and search for an element
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+bool search(int val) {
+    node* t = head;
+    while (t != nullptr) {
+        if (t->data == val) {
+            return true;
+        }
+        t = t->link;
+    }
+    return false;
+}
+int main() {
+    int n, val, searchVal;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Enter value to search: ";
+    cin >> searchVal;
+    if (search(searchVal)) {
+        cout << "Value " << searchVal << " found in the list." << endl;
+    } else {
+        cout << "Value " << searchVal << " not found in the list." << endl;
+    }
+    return 0;
+}
+34. Create a Linked List of n elements and insert an element
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+void display() {
+    node* t = head;
+    while (t != nullptr) {
+        cout << t->data << " ";
+        t = t->link;
+    }
+    cout << endl;
+}
+int main() {
+    int n, val, insertVal;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Enter value to insert: ";
+    cin >> insertVal;
+    insert(insertVal);
+    cout << "The linked list after insertion is: ";
+    display();
+    return 0;
+}
+35. Create a Linked List of n elements and delete an element
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+void deleteNode(int pos) {
+    if (head == nullptr) {
+        cout << "List is empty" << endl;
+        return;
+    }
+    if (pos == 1) {
+        node* t = head;
+        head = head->link;
+        delete t;
+        return;
+    }
+    node* t = head;
+    node* pre = nullptr;
+    for (int i = 1; i < pos && t != nullptr; i++) {
+        pre = t;
+        t = t->link;
+    }
+    if (t == nullptr) {
+        cout << "Position out of bounds" << endl;
+    } else {
+        pre->link = t->link;
+        delete t;
+    }
+}
+void display() {
+    node* t = head;
+    while (t != nullptr) {
+        cout << t->data << " ";
+        t = t->link;
+    }
+    cout << endl;
+}
+int main() {
+    int n, val, pos;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Enter position to delete: ";
+    cin >> pos;
+    deleteNode(pos);
+    cout << "The linked list after deletion is: ";
+    display();
+    return 0;
+}
+38. Search for an ITEM from the Linked List
+cpp
+Copy code
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+bool search(int val) {
+    node* t = head;
+    while (t != nullptr) {
+        if (t->data == val) {
+            return true;
+        }
+        t = t->link;
+    }
+    return false;
+}
+int main() {
+    int n, val, item;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Enter ITEM to search: ";
+    cin >> item;
+    if (search(item)) {
+        cout << "ITEM " << item << " found in the list." << endl;
+    } else {
+        cout << "ITEM " << item << " not found in the list." << endl;
+    }
+    return 0;
+}
+39. Print the even integers from a Linked List
+cpp
+Copy code
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+void printEven() {
+    node* t = head;
+    while (t != nullptr) {
+        if (t->data % 2 == 0) {
+            cout << t->data << " ";
+        }
+        t = t->link;
+    }
+    cout << endl;
+}
+int main() {
+    int n, val;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Even elements in the list are: ";
+    printEven();
+    return 0;
+}
+40. Sum up the values of a Linked List
+cpp
+Copy code
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+int sumList() {
+    node* t = head;
+    int sum = 0;
+    while (t != nullptr) {
+        sum += t->data;
+        t = t->link;
+    }
+    return sum;
+}
+int main() {
+    int n, val;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Sum of elements in the list is: " << sumList() << endl;
+    return 0;
+}
+41. Count the number of elements in a Linked List
+cpp
+Copy code
+#include<bits/stdc++.h>
+using namespace std;
+struct node {
+    int data;
+    node* link;
+};
+node* head = nullptr;
+// Function to insert elements into the list
+void insert(int val) {
+    node* temp = new node;
+    temp->data = val;
+    temp->link = nullptr;
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        node* t = head;
+        while (t->link != nullptr) {
+            t = t->link;
+        }
+        t->link = temp;
+    }
+}
+// Function to count the number of elements in the list
+int countElements() {
+    int count = 0;
+    node* t = head;
+    while (t != nullptr) {
+        count++;
+        t = t->link;
+    }
+    return count;
+}
+int main() {
+    int n, val;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        insert(val);
+    }
+    cout << "Number of elements in the list: " << countElements() << endl;
+    return 0;
+}
